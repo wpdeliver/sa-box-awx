@@ -16,6 +16,12 @@
     tags:
       - awx
 
+  - name: AWX | Ensure ansible-tower-cli
+    pip: name=ansible-tower-cli state=present
+    become: yes
+    tags:
+      - awx
+
   - name: AWX | Clone repo
     git:
       repo: "https://github.com/ansible/awx.git"
