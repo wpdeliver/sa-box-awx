@@ -6,6 +6,8 @@ option_install_python: true
 option_install_git: true
 option_install_nodejs: true
 
+option_use_dockercompose: true
+
 role_dir: "{{ role_path }}"
 nodejs_version: "8.x"
 

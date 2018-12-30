@@ -26,7 +26,7 @@
     command: >
       ansible-playbook -i inventory install.yml 
       -e postgres_data_dir={{ awx_data_dir }}
-      -e project_data_dir={{ awx_projects_dir }}"
+      -e project_data_dir={{ awx_projects_dir }}
       -e awx_task_hostname=awx
       -e awx_web_hostname=awxweb
       -e host_port=80
@@ -41,6 +41,7 @@
       -e admin_password={{ awx_admin_pass }}
       -e create_preload_data=True
       -e secret_key=awxsecret
+      -e use_docker_compose={{ option_use_dockercompose }}
 # pg_hostname=postgresql      
     args:
       chdir: "{{ awx_repo_dir }}/installer"
