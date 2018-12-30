@@ -1,5 +1,4 @@
 ---
-  
   - name: AWX | Create dirs
     file: path="{{ item }}" state="directory" owner="{{ awx_user }}"
     with_items:
@@ -12,12 +11,18 @@
 
   - name: AWX | Ensure ansible
     pip: name=ansible state=present
+    retries: 3
+    register: result
+    until: result is not failed
     become: yes
     tags:
       - awx
 
   - name: AWX | Ensure ansible-tower-cli
     pip: name=ansible-tower-cli state=present
+    retries: 3
+    register: result
+    until: result is not failed
     become: yes
     tags:
       - awx
@@ -27,10 +32,12 @@
       repo: "https://github.com/ansible/awx.git"
       dest: "{{ awx_repo_dir }}"
       version: "{{ awx_version }}"
+    tags:
+      - awx
 
   - name: Run the AWX installation playbook.
     command: >
-      ansible-playbook -i inventory install.yml 
+      ansible-playbook -i inventory install.yml
       -e postgres_data_dir={{ awx_data_dir }}
       -e project_data_dir={{ awx_projects_dir }}
       -e awx_task_hostname=awx
@@ -48,9 +55,11 @@
       -e create_preload_data=True
       -e secret_key=awxsecret
       -e use_docker_compose={{ option_use_dockercompose }}
-# pg_hostname=postgresql      
+# pg_hostname=postgresql
     args:
       chdir: "{{ awx_repo_dir }}/installer"
-
+    tags:
+      - awx
+      - skip_ansible_lint
 
 
