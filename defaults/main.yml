@@ -14,5 +14,8 @@ awx_user: "{{ ansible_user_id }}"
 awx_base_dir: "/opt/awx"
 awx_repo_dir: "{{ awx_base_dir }}/awx"
 awx_data_dir: "{{ awx_base_dir }}/data"
+awx_projects_dir: "{{ awx_base_dir }}/projects"
 awx_version: "2.1.2"
 
+awx_admin_user: admin
+awx_admin_pass: password
