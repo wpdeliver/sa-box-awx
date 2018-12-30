@@ -1,0 +1,3 @@
+[submodule "roles/sa-box-awx"]
+        path = roles/sa-box-awx
+        url = https://github.com/softasap/sa-box-awx.git
