@@ -1,0 +1,3 @@
+---
+# tasks file for sa-git
+  - include_tasks: tasks_git.yml

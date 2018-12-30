@@ -1,0 +1,6 @@
+---
+# tasks file for sa-docker
+  - include_tasks: tasks_docker.yml
+
+  - include_tasks: tasks_docker_compose.yml
+

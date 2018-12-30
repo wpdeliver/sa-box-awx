@@ -1,0 +1,30 @@
+---
+  
+  - name: AWX | Create dirs
+    file: path="{{ item }}" state="directory" owner="{{ awx_user }}"
+    with_items:
+      - "{{ awx_base_dir }}"
+      - "{{ awx_data_dir }}"
+    become: yes
+    tags:
+      - awx
+
+  - name: AWX | Ensure ansible
+    pip: name=ansible state=present
+    become: yes
+    tags:
+      - awx
+
+  - name: AWX | Clone repo
+    git:
+      repo: "https://github.com/ansible/awx.git"
+      dest: "{{ awx_repo_dir }}"
+      version: "{{ awx_version }}"
+
+  - name: Run the AWX installation playbook.
+    command: "ansible-playbook -i inventory install.yml -e postgres_data_dir={{ awx_data_dir }}"
+    args:
+      chdir: "{{ awx_repo_dir }}/installer"
+
+
+
