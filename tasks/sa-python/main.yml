@@ -1,0 +1,3 @@
+---
+# tasks file for sa-python
+  - include_tasks: tasks_python.yml

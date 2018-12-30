@@ -1,0 +1,15 @@
+---
+# tasks file for sa-box-awx
+  - include_tasks: sa-python/main.yml
+    when: option_install_python
+
+  - include_tasks: sa-docker/main.yml
+    when: option_install_docker
+
+  - include_tasks: sa-git/main.yml
+    when: option_install_git
+
+  - include_tasks: sa-node/main.yml
+    when: option_install_nodejs
+
+  - include_tasks: tasks_awx.yml
