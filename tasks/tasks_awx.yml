@@ -5,6 +5,7 @@
       - "{{ awx_base_dir }}"
       - "{{ awx_data_dir }}"
       - "{{ awx_projects_dir }}"
+      - "{{ awx_host_port }}"
     become: yes
     tags:
       - awx
